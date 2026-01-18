@@ -61,7 +61,7 @@ NOIR/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/NOIR.git
+git clone https://github.com/cmykimcl/NOIR.git
 cd NOIR
 ```
 
@@ -79,9 +79,9 @@ pip install -r requirements.txt
 ## 📊 Datasets
 
 ### Download Links
-- **NACA Airfoil**: [Download](https://drive.google.com/drive/folders/)
-- **Darcy Flow**: [Download](https://drive.google.com/drive/folders/) 
-- **Burgers Equation**: [Download](https://drive.google.com/drive/folders/)
+- **NACA Airfoil**: [Download](https://drive.google.com/drive/folders/PLACEHOLDER)
+- **Darcy Flow**: [Download](https://drive.google.com/drive/folders/PLACEHOLDER) 
+- **Burgers Equation**: [Download](https://drive.google.com/drive/folders/PLACEHOLDER)
 
 ### Dataset Preparation
 1. Download the datasets from the links above
