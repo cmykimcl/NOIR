@@ -1,0 +1,46 @@
+# Darcy Flow in Porous Media Configuration
+
+data:
+  train_path: data/Darcy_rectangular_PWC/piececonst_r421_N1024_smooth1.mat
+  test_path: data/Darcy_rectangular_PWC/piececonst_r421_N1024_smooth2.mat
+  ntrain: 1000
+  ntest: 200
+  batch_size: 50
+  resolution: 29  # s x s grid
+  downsample_rate: 15  # r = (421-1) // (s-1)
+
+models:
+  types_don: ['default', 'nomad', 'ortho_layer_ica']
+  types_fno: ['fourier', 'fourier_layer_ortho']
+  
+hyperparameters:
+  width_don: 128
+  width_fno: 32
+  modes: 12
+  depth: 3
+  hidden_dim: 128
+  ica_dim: 32
+
+training:
+  seeds: [0, 1, 42, 123, 777]
+  epochs: 2000
+  learning_rate: 1.e-3
+  weight_decay: 1.e-4
+  weight_decay_fno: 1.e-6
+  patience: 1000
+  gamma: 0.001
+
+noise_testing:
+  types:
+    - partial_random
+    - harmonic_spatial
+    - bandlimited_lowpass
+    - bandlimited_highpass
+    - spatial_block_noise
+  levels: [0.0, 0.1, 0.2, 0.5, 1.0]
+  fractions: [1.0, 0.5, 0.25]
+
+paths:
+  save_models: results/models/darcy/
+  save_logs: results/logs/darcy/
+  save_figures: results/figures/darcy/

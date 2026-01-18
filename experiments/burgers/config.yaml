@@ -1,0 +1,46 @@
+# 1D Burgers Equation Configuration
+
+data:
+  data_path: data/burgers/burgers_data_GRF_N1024_T048.pt
+  ntrain: 1000
+  ntest: 200
+  batch_size: 40
+  resolution: 1024  # Spatial resolution (s)
+  scaling: true  # Use MinMaxScaler
+
+models:
+  types_don: ['default', 'nomad', 'ortho_ica']
+  types_fno: ['fourier', 'fourier_ortho']
+  
+hyperparameters:
+  width_don: 128
+  width_fno: 64
+  modes: 12
+  depth: 3
+  hidden_dim: 128
+  ica_dim: 256
+
+training:
+  seeds: [0, 1, 42, 123, 777]
+  epochs: 2000
+  learning_rate: 1.e-3
+  weight_decay: 1.e-4
+  patience: 100
+  gamma: 0.001  # orthogonality regularization weight
+  scheduler_step: 100
+  scheduler_gamma: 0.5
+
+noise_testing:
+  types:
+    - partial_random
+    - harmonic_spatial
+    - bandlimited_lowpass
+    - bandlimited_highpass
+    - spatial_block_noise
+  levels: [0.0, 0.1, 0.2, 0.5, 1.0]
+  fractions: [1.0, 0.5, 0.25]
+
+paths:
+  save_models: results/models/burgers/
+  save_logs: results/logs/burgers/
+  save_figures: results/figures/burgers/

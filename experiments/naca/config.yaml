@@ -1,0 +1,39 @@
+# NACA Airfoil Flow Prediction Configuration
+data:
+  path: data/naca
+  ntrain: 1000
+  ntest: 200
+  batch_size: 20
+  resolution: [221, 51]
+  n_harmonics: 64  # Fourier descriptors
+
+models:
+  types_don: ['default', 'nomad', 'ortho_layer_ica']
+  types_fno: ['fourier', 'fourier_layer_ortho']
+  
+hyperparameters:
+  width_don: 128
+  width_fno: 32
+  modes: [12, 8]
+  depth: 3
+  hidden_dim: 128
+  ica_dim: 24
+
+training:
+  seeds: [0, 1, 42, 123, 777]
+  epochs: 2000
+  learning_rate: 1.e-3
+  weight_decay: 1.e-4
+  patience: 100
+  gamma: 0.001
+
+noise_testing:
+  types: ['partial_random', 'harmonic_spatial', 'bandlimited_lowpass', 
+          'bandlimited_highpass', 'spatial_block_noise']
+  levels: [0.0, 0.1, 0.2, 0.5, 1.0]
+  fractions: [1.0, 0.5, 0.25]
+
+paths:
+  save_models: results/models/naca
+  save_logs: results/logs/naca/
+  save_figures: results/figures/naca/
